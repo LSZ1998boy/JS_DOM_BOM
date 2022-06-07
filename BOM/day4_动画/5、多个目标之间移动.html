@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+ 
+<body>
+    <button class="btn500">点击span才走</button>
+    <button class="btn800">点击span才走800</button>
+    <span></span>
+    <script>
+        function animation(obj, target) {
+            //元素只有
+ 
+            clearInterval(obj.time);
+            obj.time = setInterval(function() {
+ 
+                //步长值取整
+                var step = (target - obj.offsetLeft) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.time);
+                } else {
+                    obj.style.left = obj.offsetLeft + step + 'px';
+                }
+            }, 30);
+        }
+        var span = document.querySelector('span');
+        var btn500 = document.querySelector('.btn500');
+        var btn800 = document.querySelector('.btn800');
+        btn500.addEventListener('click', function() {
+            animation(span, 500);
+        })
+        btn800.addEventListener('click', function() {
+            animation(span, 800);
+        })
+    </script>
+</body>
+ 
+</html>

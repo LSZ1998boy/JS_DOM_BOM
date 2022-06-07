@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <a href="login.html">点我前往上一页</a>
+    <button>后退</button>
+
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function() {
+            // history.back(); //  后退一步
+            history.go(-1)   // 后退一步  负数 后退
+        })
+    </script>
+    <script>
+        // console.log(location.search);  // ?+uname=sdbv
+        // 截取字符串  substr('起始的位置'， 截取几个字符串)  第二个参数不写 会一直截取到最后
+        let params = location.search.substring(2)  //   uname=sdbv
+        // console.log(params);  
+
+        // 利用 = 号 分割 字符串 split('=')
+        let arr = params.split('=');
+        // console.log(arr);  ['uname', 'sdbv']
+        // console.log(arr[1]);
+
+        let div = document.querySelector('div');
+        div.innerHTML = arr[1] + '欢迎您！';
+
+    </script>
+</body>
+</html>

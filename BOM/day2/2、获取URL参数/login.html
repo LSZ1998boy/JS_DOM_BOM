@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 表单才能提交信息 -->
+    <form action="index.html">   <!-- 这里跳转页面 -->>
+       用户名： <input type="text" name=" uname">
+        <input type="submit" value="登录">
+
+        
+    </form>
+    <a href="index.html">点我前往首页</a>
+    <button>前进</button>
+
+    <script>
+        // history 对象
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function() {
+            // history.forward(); //  前进一步
+            history.go(1)  // 正数 前进 
+        })
+    </script>
+</body>
+</html>

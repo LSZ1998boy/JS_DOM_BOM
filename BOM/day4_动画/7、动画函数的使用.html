@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: red;
+        }
+        
+        .con {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 40px;
+            background-color: purple;
+            z-index: -1;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="sliderbar">
+        <span>--</span>
+        <div class="con">问题反馈</div>
+    </div>
+    <script>
+        //获取元素
+        var sliderbar = document.querySelector('.sliderbar');
+        var con = document.querySelector('.con');
+        sliderbar.addEventListener('mouseenter', function() {
+            animation(con, -160, function() {
+                sliderbar.children[0].innerHTML = '?';
+            });
+        })
+        sliderbar.addEventListener('mouseleave', function() {
+            animation(con, 0, function() {
+                sliderbar.children[0].innerHTML = '--';
+            });
+        })
+ 
+        function animation(obj, target, callback) {
+            //写函数名
+            console.log(callback);
+            clearInterval(obj.time);
+            obj.time = setInterval(function() {
+ 
+                //步长值取整
+                var step = (target - obj.offsetLeft) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.time);
+                    //回调函数写在这里面
+                    if (callback) {
+                        callback();
+                    }
+                } else {
+                    obj.style.left = obj.offsetLeft + step + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</body>
+ 
+</html>

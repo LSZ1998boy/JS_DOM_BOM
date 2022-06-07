@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .big{
+        position: relative;
+        margin-top: 100px;
+        margin-left: 100px;
+        width: 916px;
+        height: 516px;
+        border: 1px solid #000;
+       overflow: hidden;
+    }
+    .small{
+        display: none;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius:25% ;
+        top: 50%;
+        margin-top: -50px;
+        background-color: rgb(122, 170, 212);
+        opacity:0.5;
+        color: #000;
+        text-align: center;
+        line-height: 50px;
+    }
+    .dot{
+       display:inline-block;
+       position: absolute;
+       height: 30px;
+       width: 100px;
+       bottom: 0%;
+       left: 40%; 
+    }
+    .dot li{
+      list-style:none;
+      float: left;
+      margin-left: 10px;
+       width: 10px;
+       height: 10px;
+       background-color: #000;
+       border-radius:50% ;
+    }
+    .dot ul ol:hover{
+        background-color: #fff;
+    }
+    .img{
+        position:absolute;
+        top: 0;
+        left: 0;
+        width: 6000px;
+        height: 516px;
+    }
+    .img>li{
+        float: left;
+    }
+ </style>
+<body>
+    <div class="big">
+        <ul class="img">
+            <li><a href="#"><img src="../../image/bg1.jpg"></a></li>
+            <li><a href="#"><img src="../../image/bg2.jpg"></a></li>
+            <li><a href="#"><img src="../../image/bg3.jpg"></a></li>
+            <li><a href="#"><img src="../../image/bg4.jpg"></a></li>
+            <li><a href="#"><img src="../../image/bg5.jpg"></a></li>
+        </ul>
+        <div class="small" style="left: 0;"> << </div>
+        <div class="small" style="right: 0;"> >> </div>
+        <ol class="dot">
+        </ol>
+    </div>
+</body>
+ <script>
+     var small=document.querySelectorAll('.small');
+     var big=document.querySelector('.big');
+
+
+
+     //鼠标经过轮播图时，两小按钮显示
+     big.addEventListener('mouseenter',function(){
+         small[0].style.display='block';
+         small[1].style.display='block';
+         clearInterval(timer);
+     })
+
+
+
+     //鼠标离开轮播图时，两小按钮隐藏
+     big.addEventListener('mouseleave',function(){
+         small[0].style.display='none';
+         small[1].style.display='none';
+         timer=setInterval(function(){
+        small[1].click();//手动调用事件
+     },2000)
+     })
+
+
+
+     //移动图片动画
+     function animate2(obj,end,speed,time,fun){//对象，结束条件，每次移动距离，间隔,回调方法
+        clearInterval(obj.t);//清除之前可能存在的定时器
+       obj.t=setInterval(function(){
+           obj.slow=(end-obj.offsetLeft)/10;
+           obj.slow=obj.slow>0?Math.ceil(obj.slow):Math.floor(obj.slow);
+           if(obj.offsetLeft==end){
+               clearInterval(obj.t);
+               if(fun){ fun(); }
+           }
+           
+           obj.style.left=obj.offsetLeft+obj.slow+'px';
+       },time);
+    }
+
+
+     //将小点与图片的个数相应自动化
+     var dot=big.querySelector('ol');
+     var imul=big.querySelector('ul');
+     var im=big.querySelector('ul').children;     
+     for(var i=0;i<im.length;i++){
+         //创建节点
+         var li=document.createElement('li');
+         //插入节点
+         dot.appendChild(li);
+        //通过自定义属性获取图片的索引号
+         li.setAttribute('num',i);
+         //小点变色排他思想
+         li.addEventListener('click',function(){
+            for(var i=0;i<im.length;i++){
+                dot.children[i].style.backgroundColor='#000';
+            }
+            this.style.backgroundColor='white';
+            var num2=this.getAttribute('num');
+            num=cc=num2;
+           animate2(imul,-num2*im[0].offsetWidth);
+         })
+         
+     }
+
+
+     //克隆第一张图,采用在最后克隆图的逻辑更流畅
+     var f=im[0].cloneNode(true);//深克隆
+     imul.appendChild(f);
+
+     //点击两侧小案钮，图片滑动
+     var num=0;
+     var cc=0;
+     var flag=true;//节流阀，防止图片切换过快
+     small[1].addEventListener('click',function(){//右侧
+        if(flag){
+            flag=false;
+       if(num==im.length-1){
+         imul.style.left=0;
+         num=0;
+       }
+       num++;
+       animate2(imul,-num*im[0].offsetWidth,50,10,function(){
+        flag=true;
+       });
+    
+       //小点跟随移动
+       cc++;
+       if(cc==im.length-1){
+           cc=0;
+       }
+       for(var i=0;i<im.length-1;i++){
+                dot.children[i].style.backgroundColor='#000';
+
+            }
+          dot.children[cc].style.backgroundColor='white';
+        }
+     })
+    
+
+
+     small[0].addEventListener('click',function(){//左侧
+        if(flag){
+            flag=false;
+       if(num==0){
+           num=im.length-1;
+         imul.style.left=-num*im[0].offsetWidth;
+       }
+       num--;
+       animate2(imul,-num*im[0].offsetWidth,50,10,function(){
+        flag=true;
+       });
+       //小点跟随移动
+       cc--;
+       if(cc<0){
+           cc=dot.children.length-1;
+       }
+       for(var i=0;i<im.length-1;i++){
+                dot.children[i].style.backgroundColor='#000';
+
+            }
+          dot.children[cc].style.backgroundColor='white';
+        }
+     })
+
+
+     //将第一个小点变白色
+     dot.children[0].style.backgroundColor='white';
+
+     //定时器实现自动播放
+     var timer=setInterval(function(){
+        small[1].click();//手动调用事件
+     },2000)
+ </script>
+</html>

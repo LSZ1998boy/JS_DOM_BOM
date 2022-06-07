@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+
+    <script>
+        // 跳转页面
+
+        let btn = document.querySelector('button');
+        // btn.addEventListener('click', function() {
+        //     // 1、assign 记录浏览历史， 可实现后退功能
+        //     location.assign('https://www.baidu.com')
+        // })
+
+        // btn.addEventListener('click', function() {
+        //     // 2、replace 不记录浏览历史， 不可实现后退功能
+        //     location.replace('https://www.baidu.com')
+        // })
+
+        btn.addEventListener('click', function() {
+            // 3、reload 刷新
+            location.reload()  // 内部加参数 true 相当于强制刷新， 再次从服务器获取数据 ，而不是使用本地缓存的数据
+        })
+    </script>
+</body>
+</html>

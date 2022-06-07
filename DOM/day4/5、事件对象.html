@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <script>
+        var div = document.querySelector('div');
+        // div.onclick = function(event) {
+
+            // 1、event 就是一个事件对象 写到我们的监听函数的小括号里面  当形参
+            //事件对象只要有了事件就会存在  系统自动创建 不需要我们传递参数
+            //事件对象 是我们事件的一系列数据的集合 和时间相关的 比如鼠标点击
+            //时间对象也有兼容性问题 window.evevt
+            // console.log(event);
+        // }
+
+        div.addEventListener('click', function(event) {
+            console.log(event);
+        })
+
+        // event 事件我们可以自己命名， 比如event, evt, e...
+
+        // 也有兼容性问题
+    </script>
+</body>
+</html>

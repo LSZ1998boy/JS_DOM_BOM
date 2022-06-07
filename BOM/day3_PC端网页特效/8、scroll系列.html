@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，
+        大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，
+        大帅哥，大帅哥，大帅哥，大帅哥，大帅哥，
+    </div>
+
+    <script>
+        let div = document.querySelector('div');
+        // 不是标签盒子的大小；而是，文本内容的大小。
+        console.log(div.scrollWidth); // 183  // 包含padding 不含 border  与client 系列类似
+        console.log(div.scrollHeight); // 252
+        div.addEventListener('scroll', function() {
+            console.log(this.scrollTop);  // 上部，被折起的文本高度      // 主要使用场景
+            console.log(this.scrollLeft);  // 左部，被折起的文本宽度
+        })
+    </script>
+</body>
+</html>

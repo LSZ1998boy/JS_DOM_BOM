@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <a href="http://www.baidu.com" target="_blank">百度</a>
+    <form action="http://www.baidu.com">
+    <input type="submit" value="提交" name="sub">
+</form>
+
+<script>
+    // 阻止默认行为 让链接不跳转 让提交按钮不提交
+    var a = document.querySelector('a');
+    // a.onclick = function(e) {
+    //     // e.preventDefault();  // 普通浏览器
+    //     // e.returnValue; // 低版本浏览器
+    //     return false;  // 只限于传统注册方式， 且下面部分不能执行
+        // alert('hello');
+    // } 
+
+    a.addEventListener('click', function(e) {
+        e.preventDefault();   // dom标准写法
+    })
+</script>
+</body>
+</html>

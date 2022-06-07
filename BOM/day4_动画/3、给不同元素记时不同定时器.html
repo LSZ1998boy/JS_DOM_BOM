@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+        }
+        
+        span {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+ 
+<body>
+    <button>点击span才走</button>
+    <div></div>
+    <span></span>
+    <script>
+        function animation(obj, target) {
+            //元素只有
+            clearInterval(obj.time);  // 调用前，先清除以前可能存在的定时器
+            obj.timer = setInterval(function() { // 用对象属性方法命名定时器， 不会大量开辟内存空间
+                if (obj.offsetLeft >= target) {
+                    clearInterval(time);
+                } else {
+                    obj.style.left = obj.offsetLeft + 10 + 'px';
+                }
+ 
+            }, 30);
+        }
+        var div = document.querySelector('div');
+        var span = document.querySelector('span');
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function() {
+            animation(span, 400);
+        })
+        animation(div, 300);
+    </script>
+</body>
+ 
+</html>

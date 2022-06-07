@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    手机号码：<input type="number"> <button>发送</button>
+
+    <script>
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', function() {
+            this.disabled = true;  // 这里 this 指向调用者  btn
+            let time = 3;
+            let timer = setInterval(function() {
+                if(time == 0){
+                    clearInterval(timer); // 清除定时器
+                    btn.disabled = false;  // 这里不能用 this 不然无效 因window.setIntervar  指向 window
+                    btn.innerHTML = '发送'; // 定时器里的 this 都是 指向 window   需注意！
+                    time = 3;
+
+                } else{
+                    btn.innerHTML = '还剩' + time +'秒';
+                    time--;
+                } 
+
+            }, 1000)
+            
+            
+        })
+    </script>
+</body>
+</html>

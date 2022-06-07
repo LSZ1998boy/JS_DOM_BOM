@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(../../image/bg2.jpg) no-repeat center top;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .baidu {
+            overflow: hidden;
+            margin: 100px auto;
+            background-color: #fff;
+            width: 417px;
+            padding-top: 3px;
+        }
+
+        .baidu li {
+            float: left;
+            margin: 0 1px;
+            cursor: pointer;
+        }
+
+        .baidu img {
+            width: 100px;
+        }
+    </style>
+</head>
+<!-- 点击图片，改变背景图片 -->
+<body>
+    <ul class="baidu">
+        <li>
+            <img src="../../image/bg2.jpg" alt="">
+            <img src="../../image/bg3.jpg" alt="">
+            <img src="../../image/bg4.jpg" alt="">
+            <img src="../../image/bg5.jpg" alt="">
+        </li>
+    </ul>
+    <script>
+        //获取元素 
+        var imgs = document.querySelector('.baidu').querySelectorAll('img');
+        // console.log(imgs);
+        //循环注册事件
+        for (let i = 0; i<imgs.length; i++) {
+            imgs[i].onclick = function() {
+                // console.log(this.src);
+                document.body.style.backgroundImage = 'url('+this.src+')';  //修改背景的图片 url(‘+字符串+’)
+            }
+        }
+    </script>
+</body>
+</html>

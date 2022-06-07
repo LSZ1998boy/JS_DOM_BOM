@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 实现 5 秒后自动跳转页面  -->
+<body>
+    <button>点击</button>
+    <div></div>
+    <script>
+        let btn = document.querySelector('button');
+        let div = document.querySelector('div');
+        let time = 5;
+        let timer = null;
+
+
+        btn.addEventListener('click', function() {
+            // console.log(window.location.href); // 获取 整个 URL
+            // let time = 5;
+            fn();  // 先调用一次 防止刷新时 不连贯
+            timer = setInterval(fn, 1000)
+        })
+
+        function fn() {
+            if(time == 0) {
+                location.href = 'https://www.baidu.com';  // 修改 URL 实现页面跳转
+                clearInterval(timer);
+                
+            }else{
+                div.innerHTML = '你将在'+ time +'秒后跳转页面!';
+                time--;
+            }
+        }
+    </script>
+</body>
+</html>

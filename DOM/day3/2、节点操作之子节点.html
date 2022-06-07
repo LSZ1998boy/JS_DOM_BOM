@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>我是div</div>
+    <span> 我是span</span>
+    <ul>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+    </ul>
+
+    <ol>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+    </ol>
+
+    <div class="demo">
+        <div class="box">
+            <span  class = "erweima"></span>
+        </div>
+    </div>
+
+    <script>
+        // DOM
+        var ul = document.querySelector('ul');
+        var lis = ul.querySelectorAll('li');
+  
+        //1、子节点  childNodes 获取所有子节点 包含 元素节点 文本节点等等   // 较麻烦 不提倡 
+        console.log(ul.childNodes);  // NodeList(9) [text, li, text, li, text, li, text, li, text]
+        console.log(ul.childNodes[0].nodeType);  //  3
+        console.log(ul.childNodes[1].nodeType);  //  1
+
+        //2、children 获取子元素节点    // 提倡
+        console.log(ul.children); // [li, li, li, li]
+
+
+    </script>
+</body>
+</html>

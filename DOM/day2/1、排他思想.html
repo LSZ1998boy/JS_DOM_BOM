@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- 排他思想：先干掉其他人，在单独设置自己的样式 -->
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+        //获取所有按钮元素
+        var btns = document.getElementsByTagName('button'); //兼容性好
+        // btns 是伪数组，需要遍历，遍历每个按钮
+        for (let i =0; i <btns.length; i++) {
+            btns[i].onclick = function() {
+                // .1 先消除所有按钮的背景色
+                for (let j = 0;j < btns.length; j++) {
+                    btns[j].style.backgroundColor = '';
+                }
+                // .2 给自己单独设置样式
+                btns[i].style.backgroundColor = 'purple'
+            }
+        }
+    </script>
+</body>
+</html>

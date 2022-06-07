@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        // 区别：e.target 点击谁返回谁;  this哪个元素绑定了:这个时间，就返回谁
+        var div = document.querySelector('div');
+        div.onclick = function(e) {
+            console.log(e.target);  // e.target 返回触发事件的对象（元素）
+            console.log(this);  // this 返回的是绑定事件的对象（元素）
+        }
+
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(e) {
+            console.log(e.target);  // 点击1,2,3 是li  返回触发事件对象 li
+            console.log(this);  // 返回绑定事件对象 ul
+        })
+
+    </script>
+</body>
+</html>

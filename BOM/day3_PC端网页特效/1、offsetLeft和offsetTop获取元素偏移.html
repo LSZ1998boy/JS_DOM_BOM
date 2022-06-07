@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            top: 0;
+        }
+        .father {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px;
+        }
+        
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            margin-left: 30px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        //offerset系列
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        //可以得到元素
+        console.log(father.offsetTop);   // 100
+        console.log(father.offsetLeft);  // 100
+        //按照父级定位来  // 父亲没有定位 查看上级 直至 body
+        console.log(son.offsetTop);  // 0
+        console.log(son.offsetLeft);   // 30
+    </script> 
+
+</body>
+</html>

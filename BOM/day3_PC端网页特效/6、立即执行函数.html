@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ 
+<body>
+    <script>
+        function fn() {
+            console.log(1);
+        }
+        fn();
+        // (function(){})() 也可以传递参数
+        (function(a) {
+            console.log(a);
+        })(1),
+ 
+        (function(a) {
+            console.log(a);
+            var num = 10;
+        }(1))
+        //立即执行函数的好处就是独立创建了作用域 里面所有的变量都是局部变量  // 同时 避免命名冲突问题
+    </script>
+</body>
+ 
+</html>

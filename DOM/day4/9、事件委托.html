@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>知否知否</li>
+        <li>知否知否</li>
+        <li>知否知否</li>
+        <li>知否知否</li>
+        <li>知否知否</li>
+    </ul>
+
+    <script>
+        // 给父元素绑定事件，而不是子元素， 利用子元素的冒泡，使用父元素的事件 使得每一个子元素 都可以使用父节点的监听器
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(e) {
+            // alert('知否知否')
+            e.target.style.backgroundColor = 'pink';
+        })
+    </script>
+</body>
+</html>
